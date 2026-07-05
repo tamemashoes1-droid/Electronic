@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بيت ونجارة | أثاث وأجهزة كهربائية بالتقسيط</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#E4002B;
+    --red-dark:#B8001F;
+    --pink-bg:#FDEDEF;
+    --pink-bg-2:#FCE4E8;
+    --ink:#1A1A1A;
+    --gray:#767676;
+    --line:#EAEAEA;
+    --green:#1F9D55;
+    --white:#FFFFFF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
+  body{background:var(--white);color:var(--ink);padding-bottom:64px;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1280px;margin:0 auto;}
+
+  /* ===== TOP BAR ===== */
+  .topbar{
+    background:var(--ink);
+    color:#ccc;
+    font-size:12px;
+    padding:6px 16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .topbar .links{display:flex;gap:14px;}
+  .topbar a{color:#ccc;}
+
+  /* ===== HEADER ===== */
+  header{
+    background:var(--white);
+    border-bottom:1px solid var(--line);
+    padding:12px 16px;
+  }
+  .header-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .cart-ic{
+    width:26px;height:26px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .search-bar{
+    flex:1;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:var(--white);
+    border:1.5px solid var(--line);
+    border-radius:8px;
+    padding:9px 14px;
+    color:var(--gray);
+    font-size:13.5px;
+  }
+  .search-bar svg{width:18px;height:18px;flex-shrink:0;color:var(--gray);}
+  .brand-logo{
+    font-size:26px;
+    font-weight:900;
+    color:var(--red);
+    flex-shrink:0;
+    white-space:nowrap;
+  }
+  .brand-logo span{font-size:13px;font-weight:600;color:var(--ink);}
+
+  .cat-bar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 16px 0;
+    font-size:13px;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .cat-bar .menu-ic{display:flex;gap:3px;flex-direction:column;}
+  .cat-bar .menu-ic span{width:18px;height:2px;background:var(--ink);display:block;}
+
+  /* ===== HERO SLIDER ROW ===== */
+  .hero-row{
+    display:flex;
+    gap:10px;
+    padding:12px 16px;
+    overflow-x:auto;
+  }
+  .hero-side{
+    flex:0 0 30%;
+    background:linear-gradient(160deg,#FCE9EC,#F9D3D9);
+    border-radius:10px;
+    padding:14px;
+    position:relative;
+    min-width:150px;
+  }
+  .hero-side .badge{
+    display:inline-block;
+    background:var(--red);
+    color:#fff;
+    font-size:10px;
+    font-weight:800;
+    padding:3px 8px;
+    border-radius:4px;
+    margin-bottom:8px;
+  }
+  .hero-side .big{font-size:15px;font-weight:900;color:var(--ink);line-height:1.3;}
+  .hero-side .code{font-size:9.5px;color:var(--gray);margin-top:8px;}
+
+  .hero-main{
+    flex:1;
+    background:linear-gradient(135deg,#1E2A44,#0F1522);
+    border-radius:10px;
+    position:relative;
+    min-width:260px;
+    aspect-ratio:16/10;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .hero-main .tag{
+    position:absolute;
+    top:10px;left:10px;
+    background:var(--red);
+    color:#fff;
+    font-size:11px;
+    font-weight:800;
+    padding:5px 12px;
+    border-radius:100px;
+  }
+  .hero-main-content{
+    color:#fff;
+    text-align:center;
+  }
+  .hero-main-content .h{font-size:20px;font-weight:900;}
+  .hero-main-content .s{font-size:11px;color:#B9C2D6;margin-top:4px;}
+  .hero-main .icon-row{
+    display:flex;
+    gap:16px;
+    margin-top:14px;
+    justify-content:center;
+    color:#fff;
+    opacity:0.85;
+  }
+
+  /* ===== CATEGORY ICONS SCROLL ===== */
+  .catscroll{
+    display:flex;
+    gap:18px;
+    overflow-x:auto;
+    padding:16px 16px 4px;
+  }
+  .catscroll::-webkit-scrollbar{display:none;}
+  .cat-item{
+    flex:0 0 auto;
+    text-align:center;
+    width:64px;
+  }
+  .cat-item .circ{
+    width:58px;height:58px;
+    border-radius:50%;
+    background:var(--pink-bg);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 6px;
+    color:var(--ink);
+  }
+  .cat-item .lbl{font-size:11px;font-weight:700;color:var(--ink);}
+
+  /* ===== PROMO BANNERS ROW ===== */
+  .promoscroll{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding:8px 16px 16px;
+  }
+  .promo-tile{
+    flex:0 0 auto;
+    width:150px;
+    height:96px;
+    border-radius:8px;
+    padding:12px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    color:#fff;
+    font-weight:800;
+    font-size:13px;
+    line-height:1.4;
+  }
+  .promo-tile.p1{background:linear-gradient(135deg,#1E2A44,#3A1520);}
+  .promo-tile.p2{background:linear-gradient(135deg,#FCE4E8,#F7BAC4);color:var(--ink);}
+  .promo-tile.p3{background:linear-gradient(135deg,#F4E9D9,#EAD4B0);color:var(--ink);}
+  .promo-tile.p4{background:linear-gradient(135deg,#2C2C2C,#111);}
+  .promo-tile.p5{background:linear-gradient(135deg,#FDEDEF,#FBD0D8);color:var(--ink);}
+  .promo-tile small{font-size:10px;font-weight:600;opacity:0.8;margin-top:4px;}
+
+  /* ===== COUNTDOWN STRIP ===== */
+  .countdown-strip{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:14px 16px;
+    flex-wrap:wrap;
+  }
+  .countdown-strip .timer{
+    background:var(--pink-bg);
+    color:var(--red);
+    font-weight:900;
+    font-size:15px;
+    padding:6px 14px;
+    border-radius:6px;
+    letter-spacing:1px;
+  }
+  .countdown-strip .cta{
+    background:var(--red);
+    color:#fff;
+    font-weight:800;
+    font-size:13px;
+    padding:8px 18px;
+    border-radius:100px;
+  }
+  .countdown-strip .txt{font-weight:800;font-size:14px;color:var(--ink);}
+
+  /* ===== PRODUCT GRID ===== */
+  .prod-scroll{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    padding:0 16px 20px;
+  }
+  .pcard{
+    flex:0 0 auto;
+    width:165px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+    background:#fff;
+  }
+  .pcard .shiprow{
+    font-size:10px;
+    color:var(--green);
+    font-weight:700;
+    padding:6px 8px 0;
+  }
+  .pthumb{
+    aspect-ratio:1/0.9;
+    background:linear-gradient(150deg,#F4E9D9,#E8D3B0);
+    margin:4px 8px 0;
+    border-radius:6px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#9C7A3E;
+  }
+  .pbody{padding:8px 10px 12px;}
+  .pname{font-size:12px;font-weight:700;color:var(--ink);line-height:1.4;min-height:34px;}
+  .pdim{font-size:10.5px;color:var(--gray);margin:4px 0 6px;}
+  .pold{font-size:11px;color:#A8A8A8;text-decoration:line-through;}
+  .pnew{font-size:16px;font-weight:900;color:var(--red);}
+  .pcode{
+    display:inline-block;
+    margin-top:6px;
+    border:1px dashed var(--red);
+    color:var(--red);
+    font-size:9.5px;
+    font-weight:800;
+    padding:2px 8px;
+    border-radius:4px;
+  }
+
+  /* ===== SECTION HEAD ===== */
+  .sec-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 16px 8px;
+  }
+  .sec-head h2{font-size:16px;font-weight:900;color:var(--ink);}
+  .sec-head a{font-size:12px;font-weight:700;color:var(--red);}
+
+  /* ===== INSTALLMENT BANNER ===== */
+  .install-banner{
+    background:linear-gradient(90deg,var(--pink-bg-2),var(--pink-bg));
+    margin:20px 16px;
+    border-radius:10px;
+    padding:20px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+  }
+  .install-banner .divider{width:2px;align-self:stretch;background:var(--green);border-radius:2px;}
+  .install-banner .h{font-size:19px;font-weight:900;color:var(--ink);line-height:1.4;}
+  .install-banner .h b{color:var(--red);font-size:23px;}
+  .install-banner .sub{
+    display:flex;
+    gap:10px;
+    margin-top:8px;
+    flex-wrap:wrap;
+    font-size:12px;
+    font-weight:800;
+    color:var(--ink);
+  }
+  .install-banner .bank{
+    text-align:center;
+    flex-shrink:0;
+  }
+  .install-banner .bank .bname{font-size:15px;font-weight:900;color:var(--ink);}
+  .install-banner .bank .btag{font-size:9px;color:var(--gray);margin-top:2px;}
+
+  /* ===== BANK GRID ===== */
+  .bank-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    padding:0 16px 20px;
+  }
+  .bank-card{
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 8px;
+    text-align:center;
+  }
+  .bank-card .bn{font-size:13px;font-weight:900;color:var(--ink);margin-bottom:6px;}
+  .bank-card .bl{font-size:11px;font-weight:800;color:var(--ink);}
+  .bank-card .bl b{color:var(--red);font-size:15px;}
+  .bank-card .zero{font-size:10px;color:var(--gray);margin-top:4px;}
+
+  /* ===== MEGA BANNER ===== */
+  .mega-banner{
+    margin:8px 16px 20px;
+    border-radius:10px;
+    background:linear-gradient(100deg,#F4E9D9,#EAD4B0);
+    padding:22px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .mega-banner .brand-word{font-size:22px;font-weight:900;color:var(--ink);}
+  .mega-banner .mega-word{font-size:30px;font-weight:900;color:var(--red);line-height:1;}
+  .mega-banner .sub{font-size:11px;font-weight:700;color:var(--ink);margin-top:4px;}
+
+  /* ===== BOTTOM NAV ===== */
+  .bottom-nav{
+    position:fixed;
+    bottom:0;right:0;left:0;
+    background:#fff;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    padding:8px 0 10px;
+    max-width:1280px;
+    margin:0 auto;
+  }
+  .bn-item{
+    text-align:center;
+    font-size:10.5px;
+    font-weight:700;
+    color:var(--gray);
+  }
+  .bn-item svg{width:22px;height:22px;margin:0 auto 3px;display:block;}
+  .bn-item.active{color:var(--red);}
+  .bn-item.active svg{color:var(--red);}
+
+  @media (min-width:720px){
+    .hero-row{flex-wrap:nowrap;}
+    .prod-scroll{flex-wrap:wrap;justify-content:flex-start;}
+    .pcard{width:calc(20% - 8px);}
+    .bank-grid{grid-template-columns:repeat(6,1fr);}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="links"><a href="#">تسجيل الدخول</a><a href="#">إنشاء حساب</a></div>
+  <div>مرحبًا بك في بيت ونجارة</div>
+</div>
+
+<header>
+  <div class="header-row">
+    <div class="brand-logo">بيت<span>ونجارة.كوم</span></div>
+    <div class="search-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+      البحث عن المنتجات، الأقسام...
+    </div>
+    <svg class="cart-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+  </div>
+  <div class="cat-bar">
+    <div class="menu-ic"><span></span><span></span><span></span></div>
+    <span>الكل</span>
+  </div>
+</header>
+
+<div class="hero-row">
+  <div class="hero-side">
+    <span class="badge">خصم إضافي 500 جنيه</span>
+    <div class="big">استخدم كود<br>OFF500</div>
+    <div class="code">على الطلبات 3000 جنيه أو أكتر*</div>
+  </div>
+  <div class="hero-main">
+    <span class="tag">عروض الأسبوع</span>
+    <div class="hero-main-content">
+      <div class="h">جهّز بيتك بالكامل</div>
+      <div class="s">أثاث · مطابخ · أجهزة كهربائية</div>
+      <div class="icon-row">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 21V9l9-6 9 6v12M9 21v-8h6v8"/></svg>
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="6" width="18" height="12" rx="1"/><path d="M3 10h18"/></svg>
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="catscroll">
+  <div class="cat-item">
+    <div class="circ"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 21V9l9-6 9 6v12M9 21v-8h6v8"/></svg></div>
+    <div class="lbl">غرف نوم</div>
+  </div>
+  <div class="cat-item">
+    <div class="circ"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 17h16M4 17v-3a2 2 0 012-2h12a2 2 0 012 2v3M6 12V7a2 2 0 012-2h8a2 2 0 012 2v5"/></svg></div>
+    <div class="lbl">أنتريهات</div>
+  </div>
+  <div class="cat-item">
+    <div class="circ"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M10 10v10"/></svg></div>
+    <div class="lbl">خشب ونجارة</div>
+  </div>
+  <div class="cat-item">
+    <div class="circ"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+    <div class="lbl">كهربائيات</div>
+  </div>
+  <div class="cat-item">
+    <div class="circ"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="6" width="18" height="12" rx="1"/><path d="M3 10h18"/></svg></div>
+    <div class="lbl">مطابخ</div>
+  </div>
+  <div class="cat-item">
+    <div class="circ"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="4"/><path d="M6 21c0-4 3-6 6-6s6 2 6 6"/></svg></div>
+    <div class="lbl">إضاءة</div>
+  </div>
+  <div class="cat-item">
+    <div class="circ" style="background:#1A1A1A;color:#fff;font-size:10px;font-weight:800;text-align:center;">جديد</div>
+    <div class="lbl">وصل حديثًا</div>
+  </div>
+  <div class="cat-item">
+    <div class="circ" style="background:var(--red);color:#fff;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+    <div class="lbl">الأكثر مبيعًا</div>
+  </div>
+</div>
+
+<div class="promoscroll">
+  <div class="promo-tile p1">خصم فلاش<br><small>من 9 ولمدة 3 ساعات يوميًا</small></div>
+  <div class="promo-tile p2">تشكيلة أثاث<br>جديدة<small>MEGA DEALS</small></div>
+  <div class="promo-tile p3">دولاب الحظ<br><small>خصومات حصرية تصل 70%</small></div>
+  <div class="promo-tile p4">أقوى عروض<br>الويك إند<small>كل خميس وجمعة وسبت</small></div>
+  <div class="promo-tile p5">كوبونات<br>خصم<small>استخدمها الآن</small></div>
+</div>
+
+<div class="countdown-strip">
+  <span class="txt">عروض اليوم الوطني للأثاث</span>
+  <span class="timer">23:20:37</span>
+  <span class="cta">تسوّق العروض ‹‹</span>
+</div>
+
+<div class="prod-scroll">
+  <div class="pcard">
+    <div class="shiprow">شحن مجاني</div>
+    <div class="pthumb"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 17h16M4 17v-3a2 2 0 012-2h12a2 2 0 012 2v3M6 12V7a2 2 0 012-2h8a2 2 0 012 2v5"/></svg></div>
+    <div class="pbody">
+      <div class="pname">كنبة ركنة شكل L مودرن</div>
+      <div class="pdim">280×170×85 سم</div>
+      <div class="pold">19,427 جنيه</div>
+      <div class="pnew">10,749 جنيه</div>
+      <div class="pcode">خصم إضافي حتى 500 جنيه</div>
+    </div>
+  </div>
+  <div class="pcard">
+    <div class="shiprow">شحن مجاني</div>
+    <div class="pthumb"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 21V9l9-6 9 6v12M9 21v-8h6v8"/></svg></div>
+    <div class="pbody">
+      <div class="pname">سرير خشب زان مع مرتبة</div>
+      <div class="pdim">195×120×120 سم</div>
+      <div class="pold">7,400 جنيه</div>
+      <div class="pnew">5,999 جنيه</div>
+      <div class="pcode">كود TEX200</div>
+    </div>
+  </div>
+  <div class="pcard">
+    <div class="shiprow">شحن مجاني</div>
+    <div class="pthumb"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="6" width="18" height="12" rx="1"/><path d="M3 10h18"/></svg></div>
+    <div class="pbody">
+      <div class="pname">بوتاجاز 5 شعلة استانلس</div>
+      <div class="pdim">12 قطعة إكسسوارات</div>
+      <div class="pold">9,300 جنيه</div>
+      <div class="pnew">7,750 جنيه</div>
+      <div class="pcode">كود KCH200</div>
+    </div>
+  </div>
+  <div class="pcard">
+    <div class="shiprow">شحن مجاني</div>
+    <div class="pthumb"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+    <div class="pbody">
+      <div class="pname">دولاب ملابس 4 ضلفة MDF</div>
+      <div class="pdim">120×60×200 سم</div>
+      <div class="pold">—</div>
+      <div class="pnew">8,999 جنيه</div>
+      <div class="pcode">وصل حديثًا</div>
+    </div>
+  </div>
+</div>
+
+<div class="install-banner">
+  <div style="flex:1;">
+    <div class="h">تقسيط على <b>6</b> و <b>12</b> شهر</div>
+    <div class="sub">
+      <span>0% مقدم</span>
+      <span>·</span>
+      <span>0% فوائد</span>
+      <span>·</span>
+      <span>0% مصاريف إدارية</span>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="bank">
+    <div class="bname">بنك مصر</div>
+    <div class="btag">تطبق الشروط والأحكام</div>
+  </div>
+</div>
+
+<div class="bank-grid">
+  <div class="bank-card"><div class="bn">VALU</div><div class="bl">تقسيط على <b>6</b> شهر</div><div class="zero">0% مقدم · 0% فوائد</div></div>
+  <div class="bank-card"><div class="bn">سهولة</div><div class="bl">تقسيط حتى <b>36</b> شهر</div><div class="zero">0% مقدم · 0% فوائد</div></div>
+  <div class="bank-card"><div class="bn">بريميوم كارد</div><div class="bl">تقسيط حتى <b>40</b> شهر</div><div class="zero">0% مقدم · 0% فوائد</div></div>
+  <div class="bank-card"><div class="bn">QNB</div><div class="bl">تقسيط حتى <b>24</b> شهر</div><div class="zero">0% مقدم · 0% فوائد</div></div>
+  <div class="bank-card"><div class="bn">أمان</div><div class="bl">تقسيط على <b>3</b> أشهر</div><div class="zero">0% مقدم · 0% مصاريف</div></div>
+  <div class="bank-card"><div class="bn">البنك الأهلي</div><div class="bl">تقسيط حتى <b>36</b> شهر</div><div class="zero">0% مقدم · 0% فوائد</div></div>
+</div>
+
+<div class="mega-banner">
+  <div>
+    <div class="brand-word">وصل حديثًا</div>
+    <div class="mega-word">MEGA SEASON</div>
+    <div class="sub">ميجا عروض ميجا خصومات طوال الشهر</div>
+  </div>
+  <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.2"><path d="M4 17h16M4 17v-3a2 2 0 012-2h12a2 2 0 012 2v3M6 12V7a2 2 0 012-2h8a2 2 0 012 2v5"/></svg>
+</div>
+
+<div class="sec-head">
+  <h2>الأكثر مبيعًا هذا الأسبوع</h2>
+  <a href="#">عرض الكل ‹</a>
+</div>
+<div class="prod-scroll">
+  <div class="pcard">
+    <div class="shiprow">شحن مجاني</div>
+    <div class="pthumb"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="8" r="4"/><path d="M6 21c0-4 3-6 6-6s6 2 6 6"/></svg></div>
+    <div class="pbody">
+      <div class="pname">طقم إضاءة معلقة مودرن</div>
+      <div class="pdim">3 قطع</div>
+      <div class="pold">2,240 جنيه</div>
+      <div class="pnew">1,999 جنيه</div>
+      <div class="pcode">خصم 15%</div>
+    </div>
+  </div>
+  <div class="pcard">
+    <div class="shiprow">شحن مجاني</div>
+    <div class="pthumb"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+    <div class="pbody">
+      <div class="pname">مكيف سبليت 1.5 حصان</div>
+      <div class="pdim">بارد فقط</div>
+      <div class="pold">21,549 جنيه</div>
+      <div class="pnew">18,999 جنيه</div>
+      <div class="pcode">كود AC200</div>
+    </div>
+  </div>
+  <div class="pcard">
+    <div class="shiprow">شحن مجاني</div>
+    <div class="pthumb"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M10 10v10"/></svg></div>
+    <div class="pbody">
+      <div class="pname">مكتبة خشب MDF 5 أرفف</div>
+      <div class="pdim">180×80×30 سم</div>
+      <div class="pold">4,300 جنيه</div>
+      <div class="pnew">3,590 جنيه</div>
+      <div class="pcode">كود WOOD150</div>
+    </div>
+  </div>
+  <div class="pcard">
+    <div class="shiprow">شحن مجاني</div>
+    <div class="pthumb"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 17h16M4 17v-3a2 2 0 012-2h12a2 2 0 012 2v3M6 12V7a2 2 0 012-2h8a2 2 0 012 2v5"/></svg></div>
+    <div class="pbody">
+      <div class="pname">طقم صالون مودرن 3 قطع</div>
+      <div class="pdim">بيج / رمادي</div>
+      <div class="pold">17,900 جنيه</div>
+      <div class="pnew">14,900 جنيه</div>
+      <div class="pcode">خصم إضافي 500</div>
+    </div>
+  </div>
+</div>
+
+<nav class="bottom-nav">
+  <div class="bn-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-7-10a7 7 0 0114 0c0 5.5-7 10-7 10z"/></svg>
+    قائمة الرغبات
+  </div>
+  <div class="bn-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+    عربية التسوق
+  </div>
+  <div class="bn-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.5 4-7 8-7s8 2.5 8 7"/></svg>
+    الحساب
+  </div>
+  <div class="bn-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+    التصنيفات
+  </div>
+  <div class="bn-item active">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>
+    الرئيسية
+  </div>
+</nav>
+
+</body>
+</html>
